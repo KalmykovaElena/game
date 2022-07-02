@@ -7,13 +7,13 @@
 
 </head>
 <body class="body">
-<section class ='card '>
-<h1 class="title">AIM Training</h1>
+<section class='card '>
+    <h1 class="title">AIM Training</h1>
     <a href="#" class="start" id="start">Начать игру</a>
 </section>
 
-<section class ='card '>
-<h2 class="title sub-title">Выберите время</h2>
+<section class='card '>
+    <h2 class="title sub-title">Выберите время</h2>
     <ul class="time-list" id="time-list">
         <li class="time-list__item">
             <button class="time-list__button" data-time="10">10 сек</button>
@@ -28,13 +28,24 @@
             <button class="time-list__button" data-time="30">30 сек</button>
         </li>
     </ul>
-</section >
+</section>
 
 
-<section class ='card'>
-<h2 class="title sub-title">Осталось <span id="time">00:00</span></h2>
+<section class='card'>
+    <h2 class="title sub-title">Осталось <span id="time">00:00</span></h2>
     <div class="board" id="board">
-<!--        <div class="circle"></div>-->
+        <!--        <div class="circle"></div>-->
+    </div>
+    <div class="modal">
+        <div class="modal__score"></div>
+        <ul class="modal__finish-buttons">
+            <li>
+                <button class=' modal__button restart'>Restart</button>
+            </li>
+            <li>
+                <button class=' modal__button main-page'>На главную</button>
+            </li>
+        </ul>
     </div>
 </section>
 <script src="./script.js"></script>

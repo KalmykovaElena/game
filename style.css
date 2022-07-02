@@ -1,84 +1,136 @@
 @import url('https://fonts.googleapis.com/css2?family=Khula:wght@400;700&family=Montserrat:wght@500&family=Playfair+Display&family=Roboto:ital,wght@1,300&display=swap');
-*{
+
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
 }
-html{
+
+html {
     font-size: 10px;
 }
-.body{
-color:#fff;
-    font-family: 'Khula',sans-serif;
+
+.body {
+    color: #fff;
+    font-family: 'Khula', sans-serif;
     height: 100vh;
-    font-size: 2rem;overflow: hidden;
+    font-size: 2rem;
+    overflow: hidden;
     text-align: center;
     overflow: hidden;
 }
-.card{
+
+.card {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(#29323c,#485563);
+    background: linear-gradient(#29323c, #485563);
     transition: margin 0.5s ease-in-out;
 }
-.card.up{
+
+.card.up {
     margin-top: -100vh;
 }
-.title{
+
+.title {
     line-height: 1.4;
     font-size: 4rem;
 }
-.start{
-    color:#fff;
+
+.start {
+    color: #fff;
     text-decoration: none;
     font-size: 1.5rem;
 
 }
-.start:hover{
-    color:#0ee6f1
+
+.start:hover {
+    color: #0ee6f1
 }
-.time-list{
+
+.time-list {
     display: flex;
     list-style: none;
     justify-content: center;
 }
-.time-list__item{
+
+.time-list__item {
     margin: 10px;
 }
-.time-list__button{
-    color:#fff;
+
+.time-list__button {
+    color: #fff;
     background-color: transparent;
-    border:2px solid #fff;
-    cursor:pointer;
+    border: 2px solid #fff;
+    cursor: pointer;
     padding: 0.5rem 1rem;
     font-size: 1.5rem;
     border-radius: 0.5rem;
 }
-.time-list__button:hover{
-    color:#0ee6f1;
+
+.time-list__button:hover {
+    color: #0ee6f1;
     border: 2px solid #0ee6f1
 }
-.board{
+
+.board {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 500px;
     height: 500px;
-    background: linear-gradient(118.38deg,#29323c -4.6%, #485563 200.44%);
-    box-shadow: -8px -8px 20px #fff, 10px 7px 20px #c212c2;
+    background: linear-gradient(118.38deg, #29323c -4.6%, #485563 200.44%);
+    box-shadow: -8px -8px 20px #fff, 10px 7px 20px #12c2bc;
     position: relative;
     border-radius: 30px;
 }
-.circle{
+
+.circle {
     width: 50px;
     height: 50px;
     background: #86eeee;
     position: absolute;
     border-radius: 50%;
     cursor: pointer;
-    top:0;
-    left:0;
+    top: 0;
+    left: 0;
+}
+
+.modal {
+    background-color: rgba(27, 143, 185, 0.7);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 30px #0ee6f1 inset;
+    width: 400px;
+    height: 400px;
+    position: fixed;
+    border-radius: 4rem;
+    padding-top: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+    display: none;
+}
+.active{
+    display: flex;
+}
+.modal__finish-buttons {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+
+
+}
+.modal__score{
+    font-size: 3rem;
+}
+
+.modal__button{
+    padding: 2rem;
+    background-color: dodgerblue;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    border-radius: 3rem;
 }

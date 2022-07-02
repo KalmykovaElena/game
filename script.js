@@ -3,11 +3,14 @@ const cards = document.querySelectorAll('.card')
 const timeController = document.getElementById('time-list')
 const timeEl = document.getElementById('time')
 const boardEl = document.getElementById('board')
-
+const modalWindow = document.querySelector('.modal')
+const finishButtons = document.querySelector('.modal__finish-buttons')
+const modal = document.querySelector('.modal__score')
 
 let time = 0
 let score = 0
 let idSetInterval
+let timeValue
 
 startBtn.addEventListener('click', handlerStartBtn)
 
@@ -22,8 +25,8 @@ timeController.addEventListener('click', handlerTimeController)
 function handlerTimeController(e) {
     if (e.target.classList.contains('time-list__button')) {
         cards[1].classList.add('up')
-        time = parseInt(e.target.dataset.time)
-        console.log(time)
+        timeValue = parseInt(e.target.dataset.time)
+        time = timeValue
         startGame()
     }
 }
@@ -86,9 +89,27 @@ function decTime() {
 function finishGame() {
     timeEl.parentNode.style.display = 'none'
     clearInterval(idSetInterval)
-    boardEl.innerHTML = `<p>Ваш счет: ${score} </p>`
+    modal.innerHTML = `<p>Ваш счет: ${score} </p>`
+    showModal()
+    document.querySelector('.circle').remove()
 }
+function showModal(){
+    modalWindow.classList.add('active')
+    finishButtons.addEventListener('click',restart)
 
+}
+function restart(e){
+    if(e.target.classList.contains('main-page')){
+        location.reload()
+    }else if(e.target.classList.contains('restart')){
+        this.removeEventListener('click',restart)
+        time = timeValue
+        score = 0
+        startGame()
+        timeEl.parentNode.style.display='block'
+    }
+    modalWindow.classList.remove('active')
+}
 function randomColor(){
    return `rgb(${getRandomNum(0,255)},${getRandomNum(0,255)},${getRandomNum(0,255)}`
 }
