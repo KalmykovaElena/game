@@ -99,16 +99,22 @@ function showModal(){
 
 }
 function restart(e){
-    if(e.target.classList.contains('main-page')){
-        location.reload()
-    }else if(e.target.classList.contains('restart')){
-        this.removeEventListener('click',restart)
-        time = timeValue
-        score = 0
-        startGame()
+    if(e.target.classList.contains('btn-to-main-page')){
+        resetGame()
         timeEl.parentNode.style.display='block'
+        cards.forEach((e)=>e.classList.remove('up'))
+    }else if(e.target.classList.contains('btn-restart')){
+        this.removeEventListener('click',restart)
+        resetGame()
+        startGame()
+
     }
     modalWindow.classList.remove('active')
+}
+function resetGame(){
+    time = timeValue
+    score = 0
+    timeEl.parentNode.style.display='block'
 }
 function randomColor(){
    return `rgb(${getRandomNum(0,255)},${getRandomNum(0,255)},${getRandomNum(0,255)}`
