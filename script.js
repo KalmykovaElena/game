@@ -6,11 +6,13 @@ const boardEl = document.getElementById('board')
 const modalWindow = document.querySelector('.modal')
 const finishButtons = document.querySelector('.modal__finish-buttons')
 const modal = document.querySelector('.modal__score')
-
+const getResults = document.querySelector('.btn-results')
 let time = 0
 let score = 0
 let idSetInterval
 let timeValue
+let bestResults = []
+let resultWindow
 
 startBtn.addEventListener('click', handlerStartBtn)
 
@@ -90,32 +92,93 @@ function finishGame() {
     timeEl.parentNode.style.display = 'none'
     clearInterval(idSetInterval)
     modal.innerHTML = `<p>Ваш счет: ${score} </p>`
+    bestResults=[timeValue,score]
+    if (localStorage.getItem('bestResults')) {
+        const existScore = JSON.parse(localStorage.getItem('bestResults'))
+        console.log(existScore)
+        localStorage.setItem('bestResults', JSON.stringify([...existScore, bestResults]))
+    } else {
+        localStorage.setItem('bestResults', JSON.stringify([bestResults]))
+    }
+    let results = JSON.parse(localStorage.getItem('bestResults'))
+    console.log(results)
     showModal()
     document.querySelector('.circle').remove()
 }
-function showModal(){
+
+function showModal() {
     modalWindow.classList.add('active')
-    finishButtons.addEventListener('click',restart)
+    finishButtons.addEventListener('click', restart)
 
 }
-function restart(e){
-    if(e.target.classList.contains('btn-to-main-page')){
+
+getResults.addEventListener('click', () => {
+    console.log(1111)
+     resultWindow = document.createElement('div')
+    resultWindow.classList.add('modal')
+    resultWindow.classList.add('result-list')
+    boardEl.append(resultWindow)
+    modalWindow.classList.remove('active')
+    let resultList = JSON.parse(localStorage.getItem('bestResults'))
+    console.log(resultList)
+    let elements = resultList.map(e => {
+        console.log(e)
+        return `
+        <li class="score-element">
+        Время: ${e[0]} - Счет: ${e[1]}
+</li>
+        `
+    }).slice(-8).join('')
+    console.log(elements)
+    resultWindow.innerHTML = `
+<div class="result-buttons">
+ <button  class=' modal__button btn-restart'>Играть снова</button>
+ <button  class=' modal__button btn-delete-store'>Удалить результаты</button>
+ <button  class=' modal__button btn-to-main-page'>На главную</button>
+ </div>
+    <ul>
+    ${elements}
+</ul>
+    `
+
+        resultWindow.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-restart')) {
+                resultWindow.classList.remove('result-list')
+                resetGame()
+                startGame()
+            } else if (e.target.classList.contains('btn-to-main-page')) {
+                resultWindow.classList.remove('result-list')
+                resetGame()
+                timeEl.parentNode.style.display = 'block'
+                cards.forEach((e) => e.classList.remove('up'))
+            }else if (e.target.classList.contains('btn-delete-store')) {
+                delete  localStorage.bestResults
+            }
+        })
+
+})
+
+function restart(e) {
+    if (e.target.classList.contains('btn-to-main-page')) {
         resetGame()
-        timeEl.parentNode.style.display='block'
-        cards.forEach((e)=>e.classList.remove('up'))
-    }else if(e.target.classList.contains('btn-restart')){
-        this.removeEventListener('click',restart)
+        timeEl.parentNode.style.display = 'block'
+        cards.forEach((e) => e.classList.remove('up'))
+    } else if (e.target.classList.contains('btn-restart')) {
+        this.removeEventListener('click', restart)
+        resultWindow.classList.remove('result-list')
         resetGame()
         startGame()
 
     }
     modalWindow.classList.remove('active')
 }
-function resetGame(){
+
+function resetGame() {
     time = timeValue
     score = 0
-    timeEl.parentNode.style.display='block'
+    timeEl.parentNode.style.display = 'block'
 }
-function randomColor(){
-   return `rgb(${getRandomNum(0,255)},${getRandomNum(0,255)},${getRandomNum(0,255)}`
+
+function randomColor() {
+    return `rgb(${getRandomNum(0, 255)},${getRandomNum(0, 255)},${getRandomNum(0, 255)}`
 }

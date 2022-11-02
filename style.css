@@ -113,6 +113,23 @@ html {
     visibility: hidden;
 
 }
+.result-list{
+    visibility: visible;
+    background-color:rgba(27, 143, 185, 0);
+    justify-content: start;
+    padding-bottom: 30px;
+}
+.score-element{
+    list-style: none;
+}
+.result-buttons{
+    display: flex;
+}
+.result-buttons button{
+    font-size: 1.7rem;
+
+    padding: 0;
+}
 @keyframes animate {
     from {top:-320px; opacity:0}
     to {top:0; opacity:1}
@@ -143,4 +160,8 @@ html {
     cursor: pointer;
     border-color: #ffffff;
     border-width: 4px;
+}
+.btn-results{
+    width: 40%;
+    margin:0 auto;
 }
