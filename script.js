@@ -153,6 +153,13 @@ getResults.addEventListener('click', () => {
                 cards.forEach((e) => e.classList.remove('up'))
             }else if (e.target.classList.contains('btn-delete-store')) {
                 delete  localStorage.bestResults
+                resultWindow.innerHTML = `
+<div class="result-buttons">
+ <button  class=' modal__button btn-restart'>Играть снова</button>
+ <button  class=' modal__button btn-delete-store'>Удалить результаты</button>
+ <button  class=' modal__button btn-to-main-page'>На главную</button>
+ </div>
+ `
             }
         })
 
