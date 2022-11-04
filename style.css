@@ -165,3 +165,31 @@ html {
     width: 40%;
     margin:0 auto;
 }
+@media screen and (max-width: 1000px) {
+    .board{
+        width: 70vw;
+        height: 70vw;
+    }
+    .modal{
+        width: 60vw;
+        height: 60vw;
+    }
+    .modal__button{
+        font-size: 4vw;
+    }
+    .btn-results {
+        width: 65%;
+    }
+    .modal__score {
+        font-size: 5vw;
+    }
+    .title {
+        font-size: 7vw;
+    }
+    .start {
+        font-size: 6vh;
+    }
+    .time-list__button {
+        font-size: 5vw;
+    }
+}

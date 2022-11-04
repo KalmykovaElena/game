@@ -45,10 +45,16 @@ function handleCircleClick(e) {
 }
 
 function createRandomCircle() {
-
+    let size
     const circle = document.createElement('div')
     circle.classList.add('circle')
-    const size = getRandomNum(5, 50)
+    const mediaQuery = window.matchMedia('(max-width: 1000px)')
+    if (mediaQuery.matches) {
+        size = getRandomNum(50,100)
+    }else{
+        size= getRandomNum(5, 50)
+    }
+    console.log(size)
 
     const {width, height} = boardEl.getBoundingClientRect()
     circle.style.width = circle.style.height = size + 'px'
@@ -59,6 +65,10 @@ function createRandomCircle() {
     circle.style.left = x + 'px'
     circle.style.top = y + 'px'
     boardEl.append(circle)
+    let maxSize= getComputedStyle(circle)
+    let a = maxSize.getPropertyValue('borderRadius')
+    console.log(a)
+
 }
 
 function getRandomNum(min, max) {
@@ -172,7 +182,7 @@ function restart(e) {
         cards.forEach((e) => e.classList.remove('up'))
     } else if (e.target.classList.contains('btn-restart')) {
         this.removeEventListener('click', restart)
-        resultWindow.classList.remove('result-list')
+        resultWindow &&   resultWindow.classList.contains('result-list')&&resultWindow.classList.remove('result-list')
         resetGame()
         startGame()
 
