@@ -124,6 +124,8 @@ html {
 }
 .result-buttons{
     display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 .result-buttons button{
     font-size: 1.7rem;
@@ -191,5 +193,8 @@ html {
     }
     .time-list__button {
         font-size: 5vw;
+    }
+    .result-buttons button{
+font-size: 3vw;
     }
 }
